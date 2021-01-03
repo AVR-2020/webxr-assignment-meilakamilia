@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Escape</title>
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-asset>
+            <a-asset-item
+                id="library"
+                src="study_room/scene.gltf"
+            ></a-asset-item>
+            <a-asset-item
+                id="door"
+                src="entry-door_with-sidelights/scene.gltf"
+            ></a-asset-item>
+        </a-asset>
+
+        <a-entity
+            gltf-model="#library"
+            position="50 0 0"
+        ></a-entity>
+        <a-entity 
+        gltf-model="#door" 
+        position="-239.89775 -86.67181 -600.24477" 
+        scale="200 150 1"
+        ></a-entity>
+        <!-- <a-entity 
+        gltf-model="#door" 
+        position="-152.74365 -0.4114 -600.24477" 
+        rotation="" 
+        scale="10 10 1"
+        ></a-entity>
+         <a-entity
+            gltf-model="#door"
+            position="-30 0 0"
+            rotation="0 70 0"
+        ></a-entity> --> 
+        
+    </a-scene>
+</body>
+</html>
