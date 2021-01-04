@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Escape</title>
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script> 
+    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-click-drag-component"></script>
+    <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+    <script>
+        registerAframeClickDragComponent(window.AFRAME);
+      </script>
+</head>
 </head>
 <body>
     <a-scene>
@@ -17,6 +26,18 @@
                 id="door"
                 src="entry-door_with-sidelights/scene.gltf"
             ></a-asset-item>
+            <a-asset-item
+                id="lock"
+                src="gold_lock_improved/scene.gltf"
+            ></a-asset-item>
+            <a-asset-item
+                id="key"
+                src="key/scene.gltf"
+            ></a-asset-item>
+            <a-asset-item
+                id="chest"
+                src="chest/scene.gltf"
+            ></a-asset-item>
         </a-asset>
 
         <a-entity
@@ -24,22 +45,49 @@
             position="50 0 0"
         ></a-entity>
         <a-entity 
-        gltf-model="#door" 
-        position="-239.89775 -86.67181 -600.24477" 
-        scale="200 150 1"
+            gltf-model="#door" 
+            position="-239.89775 -86.67181 -600.24477" 
+            scale="200 150 1"
         ></a-entity>
-        <!-- <a-entity 
-        gltf-model="#door" 
-        position="-152.74365 -0.4114 -600.24477" 
-        rotation="" 
-        scale="10 10 1"
+        <a-entity 
+            gltf-model="#lock" 
+            position="-191.75383 12.03779 -596.75443"
         ></a-entity>
-         <a-entity
-            gltf-model="#door"
-            position="-30 0 0"
-            rotation="0 70 0"
-        ></a-entity> --> 
-        
+        <a-entity 
+            click-drag
+            gltf-model="#key" 
+            position="-230.65359 -24.14284 -99.49087" 
+            scale="5 5 5" 
+            rotation="90 0 0"
+        ></a-entity>
+        <a-entity 
+            class="grabbable"
+            gltf-model="#chest" 
+            position="-43.3173 -28.61429 -77.74938" 
+            scale="0.5 0.5 0.5" 
+            rotation="0 90 0"
+            animation-mixer="
+                loop: pingpong;
+            "
+        ></a-entity>
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera> 
+        <a-entity
+            laser-controls="
+                hand: right;
+                color: red;
+            "
+        ></a-entity>
+        <a-entity
+            sphere-collider="objects: .grabbable;"
+            super-hands
+            hand-controls="
+                hand: right;
+                color: red;
+            "
+            grab
+        ></a-entity>
     </a-scene>
 </body>
 </html>
