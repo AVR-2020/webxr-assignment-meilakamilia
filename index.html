@@ -10,9 +10,8 @@
     <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
     <script src="https://unpkg.com/aframe-click-drag-component"></script>
     <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
-    <script>
-        registerAframeClickDragComponent(window.AFRAME);
-      </script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+    <script src="main.js"></script>
 </head>
 </head>
 <body>
@@ -50,8 +49,12 @@
             scale="200 150 1"
         ></a-entity>
         <a-entity 
-            gltf-model="#lock" 
+            gltf-model="#lock"
             position="-191.75383 12.03779 -596.75443"
+            event-set__click="
+                _event:click;
+                _target: #lolos;
+            "
         ></a-entity>
         <a-entity 
             click-drag
@@ -61,16 +64,33 @@
             rotation="90 0 0"
         ></a-entity>
         <a-entity 
+            id="key-spare"
+            grabbable
+            class="clickable"
+            click-drag="" 
+            gltf-model="key/scene.gltf" 
+            position="-224.46759 -25.08075 -52.35996" 
+            scale="5 5 5" 
+            rotation="90 0 0"
+            event-set__click="
+                _event:click;
+                translation:0 0 0;
+                _target: #camera;
+            "
+        ></a-entity>
+        <a-entity 
             class="grabbable"
             gltf-model="#chest" 
             position="-43.3173 -28.61429 -77.74938" 
             scale="0.5 0.5 0.5" 
             rotation="0 90 0"
-            animation-mixer="
-                loop: pingpong;
+            event-set__click="
+                _event:click;
+                _target: #lolos;
             "
         ></a-entity>
-        <a-camera>
+        <a-camera
+            id="camera">
             <a-cursor></a-cursor>
         </a-camera> 
         <a-entity
@@ -88,6 +108,40 @@
             "
             grab
         ></a-entity>
+    <a-text 
+    value="Petunjuk:
+        Penulis Hujan Bulan Juni" 
+        color="white" 
+        position="-215 83 -79.84495" 
+        text="align: center"
+         rotation="0 90 0" 
+         scale="50 50 1">
+    </a-text>
+    <a-text 
+        id="lolos" 
+        value="Selamat kamu berhasil keluar" 
+        color="white" 
+        position="-259.13787 56.91375 -586.66579" 
+        text="align: center" 
+        rotation="" 
+        scale="50 50 1"
+        animation="
+            property: visible;
+            from: false;
+            to: true;
+            dur=2000;
+        ">
+        
+    </a-text>
+        <a-box 
+            class="grabbable" 
+            position="-217.99684 83.66103 -77.74938" 
+            color="black" 
+            scale="0.2 100 150"
+        ></a-box>
+        <a-keyboard></a-keyboard>
+        <a-input position="-0.7 1 -2.5" placeholder="Username" color="black" width="1"></a-input>
+        <a-input position="-0.7 0.8 -2.5" type="password" placeholder="Password" color="black" width="1"></a-input>
     </a-scene>
 </body>
 </html>
